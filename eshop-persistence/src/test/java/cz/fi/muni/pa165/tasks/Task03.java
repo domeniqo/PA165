@@ -43,10 +43,10 @@ public class Task03 extends AbstractTestNGSpringContextTests {
             
             productService.create(p);
             
-            Assert.assertEquals(productService.findAll().size(), 1);
+            Assert.assertEquals(productService.findById(p.getId()), p);
             
             productService.remove(p);
             
-            Assert.assertEquals(productService.findAll().size(), 0);
+            Assert.assertEquals(productService.findById(p.getId()), null);
         }
 }

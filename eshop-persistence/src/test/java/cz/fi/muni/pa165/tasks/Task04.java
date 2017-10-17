@@ -94,7 +94,7 @@ public class Task04 extends AbstractTestNGSpringContextTests {
 	 */
 	@Test
 	public void findProducts(){
-		List<Product> found = em.createQuery("TODO",Product.class).getResultList();
+		List<Product> found = em.createQuery("select p from Product p",Product.class).getResultList();
 		Assert.assertEquals(found.size(), 4);
 	}
 	
@@ -103,7 +103,7 @@ public class Task04 extends AbstractTestNGSpringContextTests {
 	 */
 	@Test
 	public void findProductByName(){
-		List<Product> found = em.createQuery("TODO",Product.class).setParameter("name", "Flashlight").getResultList();
+		List<Product> found = em.createQuery("select p from Product p where name = :name",Product.class).setParameter("name", "Flashlight").getResultList();
 		Assert.assertEquals(found.size(), 1);
 		Assert.assertEquals(found.get(0).getName(), "Flashlight");
 		Assert.assertEquals(found.get(0).getColor(), Color.RED);
