@@ -39,6 +39,7 @@ public class Category {
 		this.id = categoryId; 
 	}
 	public Category() {
+            products = new HashSet<Product>();
 	}
 
 	public String getName() {

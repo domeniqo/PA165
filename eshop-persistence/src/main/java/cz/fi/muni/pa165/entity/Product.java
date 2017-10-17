@@ -96,6 +96,7 @@ public class Product {
 		this.id = productId;
 	}
 	public Product() {
+            categories = new HashSet<Category>();
 	}
 	public byte[] getImage() {
 		return image;

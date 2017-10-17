@@ -30,7 +30,7 @@ public class Task02 extends AbstractTestNGSpringContextTests {
         private Product plate;
 
 	@BeforeClass
-        private void initialize(){
+        public void initialize(){
             EntityManager em = emf.createEntityManager();
             kitchen = new Category();
             kitchen.setName("Kitchen");
@@ -62,15 +62,57 @@ public class Task02 extends AbstractTestNGSpringContextTests {
         }
         
         @Test
-        private void kitchenCategoryTest(){
+        public void kitchenCategoryTest(){
             EntityManager em = emf.createEntityManager();
             em.getTransaction().begin();
-            Category catA = em.find(Category.class, 1L);
+            Category catA = em.find(Category.class, kitchen.getId());
             em.close();
             
             assertContainsProductWithName(catA.getProducts(), "Kitchen robot");
             assertContainsProductWithName(catA.getProducts(), "Plate");
             
+        }
+        
+        @Test
+        public void electroCategoryTest(){
+            EntityManager em = emf.createEntityManager();
+            em.getTransaction().begin();
+            Category catA = em.find(Category.class, electro.getId());
+            em.close();
+            
+            assertContainsProductWithName(catA.getProducts(), "Flashlight");
+            assertContainsProductWithName(catA.getProducts(), "Kitchen robot");
+        }
+        
+        @Test
+        public void flashlightProductTest(){
+            EntityManager em = emf.createEntityManager();
+            em.getTransaction().begin();
+            Product productA = em.find(Product.class, flashlight.getId());
+            em.close();
+            
+            assertContainsCategoryWithName(productA.getCategories(), "Electro");
+        }
+        
+        @Test
+        public void kitchenRobotProductTest(){
+            EntityManager em = emf.createEntityManager();
+            em.getTransaction().begin();
+            Product productA = em.find(Product.class, kitchenRobot.getId());
+            em.close();
+            
+            assertContainsCategoryWithName(productA.getCategories(), "Electro");
+            assertContainsCategoryWithName(productA.getCategories(), "Kitchen");
+        }
+        
+        @Test
+        public void plateProductTest(){
+            EntityManager em = emf.createEntityManager();
+            em.getTransaction().begin();
+            Product productA = em.find(Product.class, plate.getId());
+            em.close();
+            
+            assertContainsCategoryWithName(productA.getCategories(), "Kitchen");
         }
         
 	private void assertContainsCategoryWithName(Set<Category> categories,
