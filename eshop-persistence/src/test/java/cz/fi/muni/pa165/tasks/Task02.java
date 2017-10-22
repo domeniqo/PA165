@@ -134,6 +134,16 @@ public class Task02 extends AbstractTestNGSpringContextTests {
 			
 		Assert.fail("Couldn't find product "+ expectedProductName+ " in collection "+products);
 	}
+        
+        @Test(expectedExceptions=ConstraintViolationException.class)
+	public void testDoesntSaveNullName(){
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+		Product p =new Product();
+		em.persist(p);
+		em.getTransaction().commit();		
+		em.close();
+	}
 
 	
 }
