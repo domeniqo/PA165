@@ -46,8 +46,8 @@ public interface CarShopStorageService {
 	 * 
 	 * @param car
 	 *            car to be found in storage
-	 * @throw RequestedCarNotFoundException in case car doesn't exist in the
-	 *        storage
+	 * @throws RequestedCarNotFoundException in case car doesn't exist in the
+	 *         storage
 	 */
 	void sellCar(Car car) throws RequestedCarNotFoundException;
 

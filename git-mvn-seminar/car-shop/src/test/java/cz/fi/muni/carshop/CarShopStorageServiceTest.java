@@ -4,7 +4,8 @@ import static org.hamcrest.Matchers.hasKey;
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
-
+import static org.junit.Assert.assertFalse;
+        
 import java.awt.Color;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +17,7 @@ import org.junit.Rule;
 
 import cz.fi.muni.carshop.entities.Car;
 import cz.fi.muni.carshop.enums.CarTypes;
+import cz.fi.muni.carshop.exceptions.RequestedCarNotFoundException;
 import cz.fi.muni.carshop.services.CarShopStorageService;
 import cz.fi.muni.carshop.services.CarShopStorageServiceImpl;
 
@@ -64,5 +66,19 @@ public class CarShopStorageServiceTest {
 				hasSize(3));
 
 	}
+        
+        @Test
+        public void testSellingCar() throws RequestedCarNotFoundException{
+            Car car = new Car(Color.BLACK, CarTypes.TOYOTA, 2016, 899000);
+            
+            service.addCarToStorage(car);
+            
+            assertTrue(service.isCarAvailable(Color.BLACK, CarTypes.TOYOTA).isPresent());
+            
+            service.sellCar(car);
+            
+            assertFalse(service.isCarAvailable(Color.BLACK, CarTypes.TOYOTA).isPresent());
+           
+        }
 
 }
