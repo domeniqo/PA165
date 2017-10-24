@@ -33,7 +33,7 @@ public class Task01 extends AbstractTestNGSpringContextTests{
                 EntityManager myEm = emf.createEntityManager();
                 myEm.getTransaction().begin();
                 Category catA = myEm.find(Category.class, 1L);
-                Assert.assertEquals("Test", catA.getName());
+                Assert.assertEquals(catA.getName(), "Test");
                 myEm.close();
 	}
 

@@ -45,13 +45,13 @@ public class ProductDaoImpl implements ProductDao{
 
     @Override
     public List<Product> findByName(String name) {
-        try {
+        //try {
 			return em.createQuery("select p from Product p where name = :name",
 							Product.class).setParameter("name", name)
 					.getResultList();
-		} catch (NoResultException nrf) {
-			return null;
-		}
+	//	} catch (NoResultException nrf) {
+	//		return null;
+	//	}
     }
     
 }
