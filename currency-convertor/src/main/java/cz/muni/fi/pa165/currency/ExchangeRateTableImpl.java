@@ -16,7 +16,11 @@ public class ExchangeRateTableImpl implements ExchangeRateTable{
 
     @Override
     public BigDecimal getExchangeRate(Currency sourceCurrency, Currency targetCurrency) throws ExternalServiceFailureException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(sourceCurrency == Currency.getInstance("EUR") && targetCurrency == Currency.getInstance("CZK")){
+            return new BigDecimal("27");
+        }else{
+            return null;
+        }
     }
     
 }
