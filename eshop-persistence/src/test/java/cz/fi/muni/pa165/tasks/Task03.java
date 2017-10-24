@@ -39,7 +39,7 @@ public class Task03 extends AbstractTestNGSpringContextTests {
         @Test
         public void removeTest(){
             Product p = new Product();
-            p.setName("TestProduct1");
+            p.setName("TestProduct3");
             
             productService.create(p);
             
