@@ -20,17 +20,21 @@ public class CharacterEncodingFilter implements Filter {
 
     final static Logger log = LoggerFactory.getLogger(CharacterEncodingFilter.class);
 
+    @Override
     public void doFilter(ServletRequest r, ServletResponse s, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) r;
         HttpServletResponse response = (HttpServletResponse) s;
         request.setCharacterEncoding("utf-8");
         filterChain.doFilter(request, response);
+        log.trace(((HttpServletRequest) r).getRequestURL().toString());
     }
 
+    @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         log.debug("filter initialized ...");
     }
 
+    @Override
     public void destroy() {
     }
 }
