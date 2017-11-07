@@ -21,13 +21,10 @@ public class LoggingAspect {
     @Around("execution(public * *(..))")
     public Object logMethodCall(ProceedingJoinPoint joinPoint) throws Throwable {
 
-        System.err.println("Calling method: "
-                + joinPoint.getSignature());
-
+        long start = System.currentTimeMillis();
         Object result = joinPoint.proceed();
-
-        System.err.println("Method finished: "
-                + joinPoint.getSignature());
+        long end = System.currentTimeMillis() - start;
+        System.out.println("Method " + joinPoint.getSignature() + " duration: " + end + "ms");
 
         return result;
     }
